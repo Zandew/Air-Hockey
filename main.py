@@ -89,6 +89,7 @@ pygame.display.set_caption('Air Hockey')
 
 # Text for back to main menu button (in Rules and Level Selection)
 backMainMenu = font1.render("Back to Main Menu", True, (255,255,255))
+backGame = font1.render("Back to Game", True, (255, 255, 255))
 
 # Text for after pause button is pressed
 resumeText = font6.render("Resume", True, (255,255,255))
@@ -239,8 +240,11 @@ while keep_going:
         # Outputs rules title
         screen.blit(rulesTitle, (447, 100))
         
-        # Outputs text for back to main menu button
-        screen.blit(backMainMenu, (60, 593))
+        if inMenu:
+            # Outputs text for back to main menu button
+            screen.blit(backMainMenu, (60, 593))
+        else:
+            screen.blit(backGame, (90, 593))
 
         # Outputs image showing controls for red paddle player (letter controls)
         screen.blit(pygame.transform.scale(letterControlImg, (150,100)), (270,200))
@@ -543,7 +547,7 @@ while keep_going:
 
                 # Determines which part of the screen is pressed (coordinates)
                 # If resume button is pressed
-                if (ev.pos[0]>=445 and ev.pos[0]<=595 and ev.pos[1]>=200 and ev.pos[1]<=300):
+                if (ev.pos[0]>=445 and ev.pos[0]<=595 and ev.pos[1]>=225 and ev.pos[1]<=325):
                     # Game continues from where it left off (game is no longer paused)
                     inGame = True
                     pause = False
@@ -564,24 +568,24 @@ while keep_going:
                         level1 = False
                     else:
                         level2 = False
-                elif (ev.pos[0]>=445 and ev.pos[0]<595 and ev.pos[1]>=500 and ev.pos[1]<=600):
+                elif (ev.pos[0]>=445 and ev.pos[0]<595 and ev.pos[1]>=475 and ev.pos[1]<=575):
                     pause = False
                     inRules = True
 
         # Output of the pause screen
-        pygame.draw.rect(screen, (41,41,41), pygame.Rect(420, 150, 200, 500))
+        pygame.draw.rect(screen, (41,41,41), pygame.Rect(420, 200, 200, 400))
         # Button for resume game
-        pygame.draw.rect(screen, (28,134,238), pygame.Rect(445, 200, 150, 100))
+        pygame.draw.rect(screen, (28,134,238), pygame.Rect(445, 225, 150, 100))
         # Button for quit game      
         pygame.draw.rect(screen, (255,48,48), pygame.Rect(445, 350, 150, 100))
         # Button for rules
-        pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(445, 500, 150, 100))
+        pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(445, 475, 150, 100))
         # Text for resume button
-        screen.blit(resumeText, (470,240))
+        screen.blit(resumeText, (465, 254))
         # Text for quit button
-        screen.blit(quitText, (493,390))
+        screen.blit(quitText, (487, 382))
         # Text for rules button
-        screen.blit(rulesText, (490, 540)) 
+        screen.blit(rulesText, (482, 507)) 
 
     elif gameOver:
 

@@ -93,6 +93,7 @@ backMainMenu = font1.render("Back to Main Menu", True, (255,255,255))
 # Text for after pause button is pressed
 resumeText = font6.render("Resume", True, (255,255,255))
 quitText = font6.render("Quit", True, (255,255,255))
+rulesText = font6.render("Rules", True, (255,255,255))
 
 # Draw the back button to main menu in rules
 pygame.draw.rect(rules, (255, 0, 0), pygame.Rect(50, 590, 425, 60))
@@ -205,9 +206,8 @@ while keep_going:
                 # Determines which part of the screen is pressed (coordinates)
                 # If back to main menu button is pressed
                 if (ev.pos[0]>=50 and ev.pos[0]<=475 and ev.pos[1]>=590 and ev.pos[1]<=650):
-                    # Goes back out of rules screen and into main menu screen
+                    # Goes back out of rules screen
                     inRules = False
-                    inMenu = True
 
         # Rules screen title
         rulesTitle = font3.render("RULES", True, (0,0,0))
@@ -300,7 +300,6 @@ while keep_going:
                 # If rules button is pressed
                 elif (ev.pos[0]>=540 and ev.pos[0]<=940 and ev.pos[1]>=200 and ev.pos[1]<=400):
                     # Goes out of main menu screen and into rules screen
-                    inMenu = False
                     inRules = True
                     
                 # If exit button is pressed
@@ -544,7 +543,7 @@ while keep_going:
 
                 # Determines which part of the screen is pressed (coordinates)
                 # If resume button is pressed
-                if (ev.pos[0]>=445 and ev.pos[0]<=595 and ev.pos[1]>=270 and ev.pos[1]<=370):
+                if (ev.pos[0]>=445 and ev.pos[0]<=595 and ev.pos[1]>=200 and ev.pos[1]<=300):
                     # Game continues from where it left off (game is no longer paused)
                     inGame = True
                     pause = False
@@ -554,7 +553,7 @@ while keep_going:
                     startTime += pausedTime
 
                 # If quit button is pressed
-                elif (ev.pos[0]>=445 and ev.pos[0]<=595 and ev.pos[1]>=419 and ev.pos[1]<=519):
+                elif (ev.pos[0]>=445 and ev.pos[0]<=595 and ev.pos[1]>=350 and ev.pos[1]<=450):
                     # Goes to main menu screen from game screen (game is no longer paused)
                     inMenu = True
                     inGame = False
@@ -565,17 +564,24 @@ while keep_going:
                         level1 = False
                     else:
                         level2 = False
+                elif (ev.pos[0]>=445 and ev.pos[0]<595 and ev.pos[1]>=500 and ev.pos[1]<=600):
+                    pause = False
+                    inRules = True
 
         # Output of the pause screen
-        pygame.draw.rect(screen, (41,41,41), pygame.Rect(420, 245, 200, 300))
+        pygame.draw.rect(screen, (41,41,41), pygame.Rect(420, 150, 200, 500))
         # Button for resume game
-        pygame.draw.rect(screen, (28,134,238), pygame.Rect(445, 270, 150, 100))
+        pygame.draw.rect(screen, (28,134,238), pygame.Rect(445, 200, 150, 100))
         # Button for quit game      
-        pygame.draw.rect(screen, (255,48,48), pygame.Rect(445, 419, 150, 100))
+        pygame.draw.rect(screen, (255,48,48), pygame.Rect(445, 350, 150, 100))
+        # Button for rules
+        pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(445, 500, 150, 100))
         # Text for resume button
-        screen.blit(resumeText, (470,302.5))
+        screen.blit(resumeText, (470,240))
         # Text for quit button
-        screen.blit(quitText, (493,450))
+        screen.blit(quitText, (493,390))
+        # Text for rules button
+        screen.blit(rulesText, (490, 540)) 
 
     elif gameOver:
 

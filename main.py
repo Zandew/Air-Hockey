@@ -326,11 +326,11 @@ while keep_going:
         # Outputs screen for main menu
         screen.blit(mainMenu, (0, 0))
         # Outputs main menu title
-        screen.blit(mainTitle, (370, 100))
+        screen.blit(mainTitle, (389, 100))
         # Outputs text for level selection button
-        screen.blit(levelSelectionMenu, (115, 271))
+        screen.blit(levelSelectionMenu, (135, 271))
         # Outputs text for rules button (in Main Menu)
-        screen.blit(rulesMenu, (675, 271))
+        screen.blit(rulesMenu, (680, 271))
 
         # Outputs exit propgram button
         screen.blit(pygame.transform.scale(exitButton, (150,55)), (445,430))

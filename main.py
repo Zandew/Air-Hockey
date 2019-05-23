@@ -24,7 +24,6 @@ from pygame.locals import *
 
 # Initiates pygame.mixer to allow multiple channels for sound effects
 pygame.mixer.init(frequency = 22050, size = -16, channels = 4, buffer = 1024)
-#pygame.mixer.pre_init(44100, 16, 2, 4096)
 pygame.init()
 
 # Creates the 6 fonts used
@@ -171,6 +170,10 @@ score2 = 0
 goalIncrease1 = 0
 goalIncrease2 = 0
 
+# Original time for start time and pause start time (used to keep at the original time when the game is paused)
+startTime = time.time()
+pauseStartTime = time.time()
+
 # Loads image for arrow controls in rules
 arrowControlImg = pygame.image.load("arrowcontrols.png").convert_alpha()
 # Loads image for letter controls in rules
@@ -210,6 +213,7 @@ while keep_going:
                 if (ev.pos[0]>=50 and ev.pos[0]<=475 and ev.pos[1]>=590 and ev.pos[1]<=650):
                     # Goes back out of rules screen
                     inRules = False
+                    startTime += time.time() - pauseStartTime
 
         # Rules screen title
         rulesTitle = font3.render("RULES", True, (0,0,0))

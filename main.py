@@ -519,14 +519,14 @@ while keep_going:
         screen.blit(levelSelectionTitle, (312, 100))
         
         # Outputs text for each button (Level 1 and Level 2)
-        screen.blit(levelOneTitle, (225, 271))
-        screen.blit(levelTwoTitle, (660, 271))
+        screen.blit(levelOneTitle, (225, 241))
+        screen.blit(levelTwoTitle, (660, 241))
 
         # Outputs description of each level
-        screen.blit(levelOneDescription1, (115, 330))
-        screen.blit(levelOneDescription2, (181, 360))
-        screen.blit(levelTwoDescription1, (560, 330))
-        screen.blit(levelTwoDescription2, (623, 360))
+        screen.blit(levelOneDescription1, (115, 300))
+        screen.blit(levelOneDescription2, (181, 330))
+        screen.blit(levelTwoDescription1, (560, 300))
+        screen.blit(levelTwoDescription2, (623, 330))
 
         # Outputs air hockey logo at the top of the screen
         screen.blit(pygame.transform.scale(airHockeyLogo, (312,120)), (364,0))
@@ -742,11 +742,6 @@ while keep_going:
             p1 = Paddle("redpaddle.png", 1, 145, 55, 645, 520, pSize1)
             p2 = Paddle("bluepaddle.png", 0, 145, 520, 645, 985, pSize2)
             puck = Puck("puck.png", 145, 10, 645, 1030, 45)
-
-            '''
-            # Text if goal size can no longer be adjusted
-            maxIncreaseLabel2 = font2.render("Goal Size Maximum", True, (50,205,50))
-            '''
             
             # Use the Goal class to create left goal (also centres the left goal)
             goal1 = Goal(1, 0, (100+((690-100)/2)-(width1/2)), width1)
@@ -795,10 +790,6 @@ while keep_going:
             p2 = Paddle("bluepaddle.png", 0, 145, 520, 645, 985, pSize2)
             puck = Puck("puck.png", 145, 10, 645, 1030, 45)
 
-            '''
-            # Text if goal size can no longer be adjusted
-            maxIncreaseLabel1 = font2.render("Goal Size Maximum", True, (50,205,50))
-            '''
             # Use the Goal class to create right goal (also centres the right goal)
             goal2 = Goal(0, 985, (100+((690-100)/2)-(width2/2)), width2)
 

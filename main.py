@@ -5,7 +5,7 @@ Programmed for:  ICS3U1-04
 Purpose:         Create the main file to run our air hockey game. This main file contains the program for the
                  user interface of the game. From the main menu the user is able to view the rules of the game,
                  quit the program, and select their choice of level. After selecting their level the user will
-                 be able to pause the game, resume the game, and quit the game. Each game lasts for 3 minutes
+                 be able to pause the game, resume the game, quit the game, or see the rules to the game. Each game lasts for 3 minutes
                  and the players will control their paddles with either the WASD keys or arrow keys. Throughout
                  the game the user will be able to see the score and time remaining. After the 3 minutes of the
                  game are over, the user will be able to see who won or if it was a tie game.
@@ -89,6 +89,7 @@ pygame.display.set_caption('Air Hockey')
 
 # Text for back to main menu button (in Rules and Level Selection)
 backMainMenu = font1.render("Back to Main Menu", True, (255,255,255))
+# Text for back to game button (in Rules when the user is looking at it when the game is paused)
 backGame = font1.render("Back to Game", True, (255, 255, 255))
 
 # Text for after pause button is pressed
@@ -96,7 +97,7 @@ resumeText = font6.render("Resume", True, (255,255,255))
 quitText = font6.render("Quit", True, (255,255,255))
 rulesText = font6.render("Rules", True, (255,255,255))
 
-# Draw the back button to main menu in rules
+# Draw the back button to main menu (before game starts) and back button to game (when game is paused) in rules
 pygame.draw.rect(rules, (255, 0, 0), pygame.Rect(50, 590, 425, 60))
 
 # Program is originally in main menu
@@ -230,7 +231,7 @@ while keep_going:
         # Text for length of each game
         lengthOfGame = font2.render("Each game lasts for 3 minutes.", True, (0,0,0))
         # Text for pausing the game
-        pauseGame = font2.render("Click the         button to pause the game, then click either \"Resume\" or \"Quit\".", True, (0,0,0))
+        pauseGame = font2.render("Click the         button to pause the game, then click either \"Resume\", \"Quit\" or \"Rules\".", True, (0,0,0))
         # Text for objective of the game
         objectiveOfGame = font2.render("Objective: Use your paddle to try to hit the puck into your opponent's goal.", True, (0,0,0))
         objectiveOfGame2 = font2.render("The player with the most number of goals wins the game.", True, (0,0,0))
@@ -244,7 +245,7 @@ while keep_going:
             # Outputs text for back to main menu button
             screen.blit(backMainMenu, (60, 593))
         else:
-            screen.blit(backGame, (90, 593))
+            screen.blit(backGame, (113, 593))
 
         # Outputs image showing controls for red paddle player (letter controls)
         screen.blit(pygame.transform.scale(letterControlImg, (150,100)), (270,200))
@@ -268,13 +269,13 @@ while keep_going:
         # Output of length of each game
         screen.blit(lengthOfGame, (355,430))
         # Output for pausing the game instructions
-        screen.blit(pauseGame, (105,465))
+        screen.blit(pauseGame, (63,465))
         # Output for objective of the game
         screen.blit(objectiveOfGame, (130,500))
         screen.blit(objectiveOfGame2, (220,535))
 
         # Outputs pause button
-        screen.blit(pygame.transform.scale(pauseButton, (40,40)), (207.5,460))
+        screen.blit(pygame.transform.scale(pauseButton, (40,40)), (167,460))
         # Outputs air hockey logo at the top of the screen
         screen.blit(pygame.transform.scale(airHockeyLogo, (312,120)), (364,0))
 
@@ -581,11 +582,11 @@ while keep_going:
         # Button for rules
         pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(445, 475, 150, 100))
         # Text for resume button
-        screen.blit(resumeText, (465, 254))
+        screen.blit(resumeText, (469, 254))
         # Text for quit button
-        screen.blit(quitText, (487, 382))
+        screen.blit(quitText, (493, 382))
         # Text for rules button
-        screen.blit(rulesText, (482, 507)) 
+        screen.blit(rulesText, (485, 507)) 
 
     elif gameOver:
 

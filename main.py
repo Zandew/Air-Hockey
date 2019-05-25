@@ -370,72 +370,14 @@ while keep_going:
 
                 # If level 1 button is pressed
                 elif (ev.pos[0]>=100 and ev.pos[0]<=500 and ev.pos[1]>=200 and ev.pos[1]<=400):
-                    # Goes to out of level selection and into game (game is in level 1)
-                    inLevelSelection = False
                     level1 = True
-                    inGame = True
-                    gameOver = False
-
-                    # Start time to calculate the time remaining in the game
-                    startTime = time.time()
-
-                    # Original red paddle size
-                    pSize1 = 60
-                    # Original blue paddle size
-                    pSize2 = 60
-
-                    # Outputs original positions of the paddles and puck
-                    p1 = Paddle("redpaddle.png", 1, 145, 55, 645, 520, pSize1)
-                    p2 = Paddle("bluepaddle.png", 0, 145, 520, 645, 985, pSize2)
-                    puck = Puck("puck.png", 145, 10, 645, 1030, 45)
-                    
-                    # Initialize score for player 1
-                    score1 = 0
-                    # Initialize score for player 2
-                    score2 = 0
-
-                    # Number of increases of goal size
-                    goalIncrease1 = 0
-                    goalIncrease2 = 0
-
-                    # Initialize left goal width, and left goalBaseBlock width
-                    width1 = 200
-                    # Initialize right goal width, and right goalBaseBlock width
-                    width2 = 200
-                    # Create left goal
-                    goal1 = Goal(1, 0, 295, width1)
-                    # Create right goal
-                    goal2 = Goal(0, 985, 295, width2)
-                    # Create left goalBaseBlock
-                    goalBaseBlock1 = GoalBaseBlock(1, 0, 295, width1)
-                    # Create right goalBaseBlock
-                    goalBaseBlock2 = GoalBaseBlock(0, 1029, 295, width2)
-                    # Initialize left goalSideBlock width
-                    sideBlockWidth1 = 150
-                    # Initialize rigth goalSideBlock width
-                    sideBlockWidth2 = 150
-                    # Create left upper goalSideBlock
-                    goalSideBlockLU = GoalSideBlock(0, 0, 145, sideBlockWidth1)
-                    # Create left lower goalSideBlock
-                    goalSideBlockLL = GoalSideBlock(1, 0, 495, sideBlockWidth1)
-                    # Create right upper goalSideBlock
-                    goalSideBlockRU = GoalSideBlock(2, 985, 145, sideBlockWidth2)
-                    # Create right lower goalSideBlock
-                    goalSideBlockRL = GoalSideBlock(3, 985, 495, sideBlockWidth2)
-                    # Create left upper goalSideBounceBlock
-                    goalSideBounceBlockLU = GoalSideBounceBlock(0, 0, 145, sideBlockWidth1)
-                    # Create left lower goalSideBounceBlock
-                    goalSideBounceBlockLL = GoalSideBounceBlock(1, 0, 495, sideBlockWidth1)
-                    # Create right upper goalSideBounceBlock
-                    goalSideBounceBlockRU = GoalSideBounceBlock(2, 985, 145, sideBlockWidth2)
-                    # Create left lower goalSideBounceBlock
-                    goalSideBounceBlockRL = GoalSideBounceBlock(3, 985, 495, sideBlockWidth2)
 
                 # If level 2 button is pressed
                 elif (ev.pos[0]>=540 and ev.pos[0]<=940 and ev.pos[1]>=200 and ev.pos[1]<=400):
-                    # Goes to out of level selection and into game (game is in level 2)
-                    inLevelSelection = False
                     level2 = True
+
+                if level1 or level2:
+                    inLevelSelection = False
                     inGame = True
                     gameOver = False
 
@@ -451,7 +393,7 @@ while keep_going:
                     p1 = Paddle("redpaddle.png", 1, 145, 55, 645, 520, pSize1)
                     p2 = Paddle("bluepaddle.png", 0, 145, 520, 645, 985, pSize2)
                     puck = Puck("puck.png", 145, 10, 645, 1030, 45)
-                    
+
                     # Initialize score for player 1
                     score1 = 0
                     # Initialize score for player 2
@@ -493,6 +435,7 @@ while keep_going:
                     goalSideBounceBlockRU = GoalSideBounceBlock(2, 985, 145, sideBlockWidth2)
                     # Create left lower goalSideBounceBlock
                     goalSideBounceBlockRL = GoalSideBounceBlock(3, 985, 495, sideBlockWidth2)
+
 
         # Draw the back button to main menu in levelSelection
         pygame.draw.rect(levelSelection, (255, 0, 0), pygame.Rect(50, 590, 425, 60))

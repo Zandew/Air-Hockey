@@ -10,6 +10,22 @@ controls = [[K_UP, K_DOWN, K_LEFT, K_RIGHT], [K_w, K_s, K_a, K_d]]
 
 class Paddle(pygame.sprite.Sprite):
 
+    '''
+    Paddle class for player paddle
+
+    Attributes:
+        img (str): file that contains paddle image
+        id (int): identifier that determines which set of controls player uses
+        top, left, bottom, right (int): boundaries of the paddle
+        size (int): size of paddle
+    
+    Methods:
+        update
+        getAngle
+        collide
+
+    '''
+
     def __init__(self, img, id, top, left, bottom, right, size):
         # Constructs the parent component
         pygame.sprite.Sprite.__init__(self)
@@ -35,6 +51,14 @@ class Paddle(pygame.sprite.Sprite):
         self.vy = 0
 
     def update(self, keys):
+        '''
+        updates paddle velocity and location of paddle
+        
+        Parameters:
+            keys (dict<string, bool>): state of all keys
+
+        Returns: None
+        '''
 
         # Accelerates the paddle if key is pressed
         # If up key or key 'w' is pressed depending on the index
@@ -123,9 +147,22 @@ class Paddle(pygame.sprite.Sprite):
             self.vy = 0
 
     def getAngle(self):
+        '''
+        Calculates current angle of paddle
+        
+        Returns: Angle of paddle
+        '''
         return math.atan2(-self.vy, self.vx)
 
     def collide(self, puck):
+        '''
+        Checks if paddle collides with puck
+
+        Parameters:
+            puck (Puck): puck object that is being checked
+    
+        Returns: True if paddle collides with puck, False otherwise
+        '''
         paddlex = self.rect.centerx
         paddley = self.rect.centery
         puckx = puck.rect.centerx

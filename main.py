@@ -2,10 +2,10 @@
 Programmed by:   Albert Chan and Andrew Xue
 Programmed on:   May 26, 2019
 Programmed for:  ICS3U1-04
-Purpose:         Create the main file to run our air hockey game. This main file contains the program for the
-                 user interface of the game. From the main menu the user is able to view the rules of the game,
-                 exit the program, and select their choice of level. After selecting their level the user will
-                 be able to pause the game, resume the game, quit the game, or see the rules during the game.
+Purpose:         This main file is created to run our air hockey game and make use to imported classes and methods from other files.
+                 This main file contains the program for the user interface of the game. From the main menu the user is able to
+                 view the rules of the game, exit the program, and select their choice of level. After selecting their level
+                 the user will be able to pause the game, resume the game, quit the game, or see the rules during the game.
                  Each game lasts for 3 minutes and the players will control their paddles with either the WASD
                  keys or arrow keys. Throughout the game the user will be able to see the score and time remaining.
                  After the 3 minutes of the game are over, the user will be able to see who won or if it was a tie game.

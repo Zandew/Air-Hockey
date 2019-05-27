@@ -174,7 +174,7 @@ class Paddle(pygame.sprite.Sprite):
         '''
         Parameters: None
         Return:     Angle of paddle (math.atan2(-self.vy, self.vx))
-        Purpose:    Calculates the current angle of the paddle to be used when the puck
+        Purpose:    Calculates the current angle of the paddle; to be used when the puck
                     collides with the paddle
         '''
 

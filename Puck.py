@@ -5,6 +5,12 @@ from pygame.locals import *
 import random
 
 def getAngle(x1, y1, x2, y2):
+    '''
+    Calculates the angle between 2 points
+    Parameters:
+        x1, y1, x2, y2 (int): x and y values of 2 points
+    Returns: angle between 2 points
+    '''
     yv = y2-y1
     xv = x1-x2
     if (xv==0):
@@ -15,6 +21,12 @@ def getAngle(x1, y1, x2, y2):
     return math.atan2(yv, xv)
 
 def calibrate(angle):
+    '''
+    Calibrates angle so that it is between 0 and 2pi
+    Paramters:
+        angle (int): the angle
+    Returns: Angle between 0 and 2pi
+    '''
     while (angle<0):
         angle += math.pi*2
     while (angle>=math.pi*2):
@@ -22,9 +34,28 @@ def calibrate(angle):
     return angle
 
 def minDist(angle1, angle2):
+    '''
+    Calculates minimum angle between 2 angles
+    Parameters:
+        angle1, angle2 (int): the 2 angles
+    Returns: minimum angle between 2 angles
+    '''
     return min(calibrate(angle1-angle2), calibrate(angle2-angle1))
 
 class Puck(pygame.sprite.Sprite):
+
+    '''
+    Puck class for hockey puck
+
+    Attributes:
+        img (str): file that contains puck image
+        top, left, bottom, right (int): boundaries of the puck
+        size (int): size of puck
+
+    Methods:
+        update()
+        bounce(paddle)
+    '''
 
     def __init__(self, img, top, left, bottom, right, size):
         pygame.sprite.Sprite.__init__(self)
@@ -41,6 +72,11 @@ class Puck(pygame.sprite.Sprite):
         self.speed = 0
 
     def update(self):
+        '''
+        Updates the location of puck
+
+        Returns: None
+        '''
         if (self.speed>0.2):
             self.speed -= 0.2
         else:
@@ -95,6 +131,14 @@ class Puck(pygame.sprite.Sprite):
             self.rect.move_ip(math.cos(self.angle)*self.speed, -math.sin(self.angle)*self.speed)
 
     def bounce(self, paddle):
+        '''
+        Changes the puck's angle and speed due to collision with paddle
+
+        Parameters:
+            paddle (paddle): the paddle that puck collides with
+
+        Returns: None
+        '''
         paddlex = (paddle.rect.left+paddle.rect.right)/2
         paddley = (paddle.rect.top+paddle.rect.bottom)/2
         puckx = (self.rect.left+self.rect.right)/2

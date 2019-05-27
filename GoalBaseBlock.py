@@ -53,10 +53,10 @@ class GoalBaseBlock(pygame.sprite.Sprite):
         '''
         Parameter: None
         Return:    The rectangle coordinates of the goalBaseBlock
-        Purpose:   This method is created to return the rectangle coordinates of the goalBaseBlock. The
+        Purpose:   This method is created to return the rectangular coordinates of the goalBaseBlock. The
                    coordinates are used to detect whether a goal has been scored (when the puck collides
                    with the goalBaseBlock)
         '''
 
-        # Returns the rectangle coordinates of the goalBaseBlock
+        # Returns the rectangular coordinates of the goalBaseBlock
         return pygame.Rect(self.lt, self.tp, 11, self.width)

@@ -7,7 +7,7 @@ Purpose:         This file is created to load the paddles for the players. The k
                  This file contains code which prevents the paddle from going out of bounds.
                  It also contains code to get the angle of the paddle in relation to the
                  coordinate plane and use it when the paddle collides with the puck to determine
-                 bounces appropriately. Lastly, this code in this file detects whether the
+                 bounces appropriately. Lastly, the code in this file detects whether the
                  paddle has collided with the puck.
 '''
 
@@ -43,8 +43,10 @@ class Paddle(pygame.sprite.Sprite):
                    <bottom> is an integer that represents the bottom barrier of the paddles
                    <right> is an integer that represents the right barrier of the paddles
                    <size> is an integer that represents the size of the paddles
-        Return:    Returns the paddle object
-        Purpose:   
+        Return:    Returns the paddle object (allows the players to see their paddles)
+        Purpose:   This method is created to output the paddles of players to the screen according
+                   to their keyboard inputs. This method also determines the attributes of the paddles
+                   (barrier and velocity in x and y direction).
         '''
         # Constructs the parent component
         pygame.sprite.Sprite.__init__(self)
@@ -71,12 +73,13 @@ class Paddle(pygame.sprite.Sprite):
 
     def update(self, keys):
         '''
-        updates paddle velocity and location of paddle
-        
-        Parameters:
-            keys (dict<string, bool>): state of all keys
-
-        Returns: None
+        Parameters: <keys> is a dictionary; states of all the keys
+        Return:     None
+        Purpose:    This method is created to respond to the keyboard inputs from the user.
+                    It updates the direction and velocity that the paddle will travel in
+                    according to keyboard inputs. Also, this method will prevent the paddle
+                    from moving in its direction once it hits the barrier. Once the paddle
+                    hits a barrier there will be a distinctive collision sound.
         '''
 
         # Accelerates the paddle if key is pressed
@@ -167,20 +170,22 @@ class Paddle(pygame.sprite.Sprite):
 
     def getAngle(self):
         '''
-        Calculates current angle of paddle
-        
-        Returns: Angle of paddle
+        Parameters: None
+        Return:     Angle of paddle (math.atan2(-self.vy, self.vx))
+        Purpose:    Calculates the current angle of the paddle to be used when the puck
+                    collides with the paddle
         '''
+
+        # Calculates the current angle of paddle in relation to the coordinate plane and returns it
+        # to be used when the puck collides with the paddle
         return math.atan2(-self.vy, self.vx)
 
     def collide(self, puck):
         '''
-        Checks if paddle collides with puck
-
-        Parameters:
-            puck (Puck): puck object that is being checked
-    
-        Returns: True if paddle collides with puck, False otherwise
+        Parameters: <puck> is a puck object
+        Return:     True if the paddle collides with the puck, False otherwise
+        Purpose:    Checks if the paddle collides with the puck by determining the distance
+                    between the puck and paddle
         '''
 
         # Determines coordinates of the centre of the puck and paddles
@@ -192,13 +197,17 @@ class Paddle(pygame.sprite.Sprite):
         # Using the coordinates of the centre of the puck and paddles to determine the distance
         # between the puck and paddles. The distance is to determine if the puck and paddle have collided
         dist = ((paddlex-puckx)**2+(paddley-pucky)**2)**0.5
+        # Radius of paddle
         paddleradius = (self.rect.width)/2
+        # Radius of puck
         puckradius = (puck.rect.width)/2
 
-        # If the distance betweeen the puck and paddle is less than a certain amount they have collided
+        # If the distance betweeen the puck and paddle is less than the sum of the radius of the paddle and the radius of the puck they have collided
         if (dist<=paddleradius+puckradius-1):
             # A distinctive collision sound between the puck and paddle will be played
             pygame.mixer.Channel(2).play(pygame.mixer.Sound("collision.wav"))
+            # There is a collision
             return True
         else:
+            # There is no collision
             return False

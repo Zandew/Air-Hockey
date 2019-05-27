@@ -1,3 +1,16 @@
+'''
+Programmed by:   Albert Chan and Andrew Xue
+Programmed on:   May 26, 2019
+Programmed for:  ICS3U1-04
+Purpose:         This file is created to load the paddles for the players. The key inputs
+                 from the players are accepted and determines where their paddles will go.
+                 This file contains code which prevents the paddle from going out of bounds.
+                 It also contains code to get the angle of the paddle in relation to the
+                 coordinate plane and use it when the paddle collides with the puck to determine
+                 bounces appropriately. Lastly, this code in this file detects whether the
+                 paddle has collided with the puck.
+'''
+
 # Imports the pygame module
 import pygame, math
 # Imports all local functions from pygame.local 
@@ -20,9 +33,9 @@ class Paddle(pygame.sprite.Sprite):
         size (int): size of paddle
     
     Methods:
-        update
+        update(keys)
         getAngle
-        collide
+        collide(puck)
 
     '''
 
@@ -102,24 +115,24 @@ class Paddle(pygame.sprite.Sprite):
         if self.rect.left<self.xmin:
             # Forms left barrier for each paddle
             self.rect.left = self.xmin
+
+            # If the red paddle hits the left barrier (blue paddle's left barrer is the middle the air hockey table which is not "wood")
             if self.id == 1:
+                # Plays distinctive collision sound when the paddle hits the barrier
                 pygame.mixer.Channel(1).play(pygame.mixer.Sound("wall.wav"))
-                '''
-                wallSound = pygame.mixer.Sound("wall.wav")
-                wallSound.play()
-                '''
+
             # When paddle hits the left barrier it stops moving
             self.vx = 0
         # If paddle hits the right barrier
         elif self.rect.right>self.xmax:
             # Forms right barrier for each paddle
             self.rect.right = self.xmax
+
+            # If the blue paddle hits the right barrier (red paddle's right barrer is the middle the air hockey table which is not "wood")
             if self.id == 0:
+                # Plays distinctive collision sound when the paddle hits the barrier
                 pygame.mixer.Channel(1).play(pygame.mixer.Sound("wall.wav"))
-                '''
-                wallSound = pygame.mixer.Sound("wall.wav")
-                wallSound.play()
-                '''
+
             # When paddle hits the right barrier it stops moving
             self.vx = 0
 
@@ -127,22 +140,20 @@ class Paddle(pygame.sprite.Sprite):
         if self.rect.top<self.ymin:
             # Forms the top barrier for each paddle
             self.rect.top = self.ymin
+
+            # Plays distinctive collision sound when the paddle hits the barrier
             pygame.mixer.Channel(1).play(pygame.mixer.Sound("wall.wav"))
-            '''
-            wallSound = pygame.mixer.Sound("wall.wav")
-            wallSound.play()
-            '''
+
             # When paddle hits the top barrier its stops moving
             self.vy = 0
         # If paddle hits the bottom barrier
         elif self.rect.bottom>self.ymax:
             # Forms the bottom barrier for each paddle
             self.rect.bottom = self.ymax
+
+            # Plays distinctive collision sound when the paddle hits the barrier
             pygame.mixer.Channel(1).play(pygame.mixer.Sound("wall.wav"))
-            '''
-            wallSound = pygame.mixer.Sound("wall.wav")
-            wallSound.play()
-            '''
+
             # When paddle hits the bottom barrier it stops moving
             self.vy = 0
 
@@ -163,19 +174,23 @@ class Paddle(pygame.sprite.Sprite):
     
         Returns: True if paddle collides with puck, False otherwise
         '''
+
+        # Determines coordinates of the centre of the puck and paddles
         paddlex = self.rect.centerx
         paddley = self.rect.centery
         puckx = puck.rect.centerx
         pucky = puck.rect.centery
+
+        # Using the coordinates of the centre of the puck and paddles to determine the distance
+        # between the puck and paddles. The distance is to determine if the puck and paddle have collided
         dist = ((paddlex-puckx)**2+(paddley-pucky)**2)**0.5
         paddleradius = (self.rect.width)/2
         puckradius = (puck.rect.width)/2
+
+        # If the distance betweeen the puck and paddle is less than a certain amount they have collided
         if (dist<=paddleradius+puckradius-1):
+            # A distance collision sound between the puck and paddle will be played
             pygame.mixer.Channel(2).play(pygame.mixer.Sound("collision.wav"))
-            '''
-            collisionSound = pygame.mixer.Sound("collision.wav")
-            collisionSound.play()
-            '''
             return True
         else:
             return False

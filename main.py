@@ -145,22 +145,22 @@ sideBlockWidth1 = 150
 # Initialize right goalSideBlock width
 sideBlockWidth2 = 150
 
-# Create left upper goalSideBlock (Draw side barrier for puck)
+# Create left upper goalSideBlock (Draw side barrier for puck and paddles)
 goalSideBlockLU = GoalSideBlock(0, 0, 145, sideBlockWidth1)
-# Create left lower goalSideBlock (Draw side barrier for puck)
+# Create left lower goalSideBlock (Draw side barrier for puck and paddles)
 goalSideBlockLL = GoalSideBlock(1, 0, 495, sideBlockWidth1)
-# Create right upper goalSideBlock (Draw side barrier for puck)
+# Create right upper goalSideBlock (Draw side barrier for puck and paddles)
 goalSideBlockRU = GoalSideBlock(2, 985, 145, sideBlockWidth2)
-# Create right lower goalSideBlock (Draw side barrier for puck)
+# Create right lower goalSideBlock (Draw side barrier for puck and paddles)
 goalSideBlockRL = GoalSideBlock(3, 985, 495, sideBlockWidth2)
 
-# Create left upper goalSideBounceBlock (Create side barrier for puck)
+# Create left upper goalSideBounceBlock (Create side barrier for puck and paddles)
 goalSideBounceBlockLU = GoalSideBounceBlock(0, 0, 145, sideBlockWidth1)
-# Create left lower goalSideBounceBlock (Create side barrier for puck)
+# Create left lower goalSideBounceBlock (Create side barrier for puck and paddles)
 goalSideBounceBlockLL = GoalSideBounceBlock(1, 0, 495, sideBlockWidth1)
-# Create right upper goalSideBounceBlock (Create side barrier for puck)
+# Create right upper goalSideBounceBlock (Create side barrier for puck and paddles)
 goalSideBounceBlockRU = GoalSideBounceBlock(2, 985, 145, sideBlockWidth2)
-# Create left lower goalSideBounceBlock (Create side barrier for puck)
+# Create left lower goalSideBounceBlock (Create side barrier for puck and paddles)
 goalSideBounceBlockRL = GoalSideBounceBlock(3, 985, 495, sideBlockWidth2)
 
 # Initialize score for player 1

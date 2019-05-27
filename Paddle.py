@@ -11,7 +11,7 @@ Purpose:         This file is created to load the paddles for the players. The k
                  paddle has collided with the puck.
 '''
 
-# Imports the pygame module
+# Imports the pygame and math modules
 import pygame, math
 # Imports all local functions from pygame.local 
 from pygame.locals import *

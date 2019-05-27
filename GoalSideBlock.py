@@ -2,8 +2,9 @@
 Programmed by:   Albert Chan and Andrew Xue
 Programmed on:   May 26, 2019
 Programmed for:  ICS3U1-04
-Purpose:         This file is created to create the base of the goal to detect
-                 whether the puck has entered the goal and a goal has been scored.
+Purpose:         This file is created to draw a block on each side of the left
+                 and right goals. This creates a visual barrier for the puck
+                 and paddles.
 '''
 
 # Imports the pygame module to invoke its functions
@@ -16,8 +17,9 @@ class GoalSideBlock(pygame.sprite.Sprite):
     '''
     Parameters: None
     Return:     None
-    Purpose:    This class is created to create a block on each side of the left
-                and right goals. This forms the barrier for the puck and paddles.
+    Purpose:    This class is created to draw a block on each side of the left
+                and right goals. This creates a visual the barrier for the puck
+                and paddles.
     '''
 
     def __init__(self, id, left, top, width):

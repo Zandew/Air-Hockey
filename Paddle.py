@@ -24,22 +24,28 @@ controls = [[K_UP, K_DOWN, K_LEFT, K_RIGHT], [K_w, K_s, K_a, K_d]]
 class Paddle(pygame.sprite.Sprite):
 
     '''
-    Paddle class for player paddle
-
-    Attributes:
-        img (str): file that contains paddle image
-        id (int): identifier that determines which set of controls player uses
-        top, left, bottom, right (int): boundaries of the paddle
-        size (int): size of paddle
-    
-    Methods:
-        update(keys)
-        getAngle
-        collide(puck)
-
+    Parameters: None
+    Return:     None
+    Purpose:    This class is created to output the paddles for the players to the screen and
+                set the barriers for the paddles. It allows the paddles' velocity and location
+                to be updated in response to the players' keyboard inputs. It allows the angle of
+                the paddles in relation to the coordinate plane to be retrieved which is used
+                when the paddles collide with the puck. It also allows for paddle and puck collisions
+                to be detected.
     '''
 
     def __init__(self, img, id, top, left, bottom, right, size):
+        '''
+        Parameter: <img> is a string of the filename that contains the image for the paddles
+                   <id> is an integer that represents the paddle player number
+                   <top> is an integer that represents the top barrier of the paddles
+                   <left> is an integer that represents the left barrier of the paddles
+                   <bottom> is an integer that represents the bottom barrier of the paddles
+                   <right> is an integer that represents the right barrier of the paddles
+                   <size> is an integer that represents the size of the paddles
+        Return:    Returns the paddle object
+        Purpose:   
+        '''
         # Constructs the parent component
         pygame.sprite.Sprite.__init__(self)
         # Size of the image
@@ -105,9 +111,11 @@ class Paddle(pygame.sprite.Sprite):
         elif self.vy<0:
             self.vy += 0.5
 
+        # Controls the speed of the paddle so that it cannot be greater than a certain amount
         self.vx = min(self.vx, 20)
         self.vy = min(self.vy, 20)
 
+        # Moves the paddles' rect
         self.rect.move_ip(self.vx, self.vy)
 
         # Forms the barrier in which the paddle can move

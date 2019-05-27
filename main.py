@@ -244,11 +244,14 @@ while keep_going:
         screen.blit(rules, (0, 0))
         # Outputs rules title
         screen.blit(rulesTitle, (447, 100))
-        
+
+        # If rules is pressed from main menu screen
         if inMenu:
             # Outputs text for back to main menu button
             screen.blit(backMainMenu, (60, 593))
+        # If rules is pressed from game screen
         else:
+            # Outputs text for back to game button
             screen.blit(backGame, (113, 593))
 
         # Outputs image showing controls for red paddle player (letter controls)
@@ -376,6 +379,7 @@ while keep_going:
                 elif (ev.pos[0]>=540 and ev.pos[0]<=940 and ev.pos[1]>=200 and ev.pos[1]<=400):
                     level2 = True
 
+                # Starts the game when either level 1 or level 2 is chosen
                 if level1 or level2:
                     inLevelSelection = False
                     inGame = True
@@ -613,7 +617,7 @@ while keep_going:
                     pauseStartTime = time.time()
 
         # 3 minute timer for the game
-        gameTime = 180-(round(time.time() - (startTime)))
+        gameTime = 180 -(round(time.time() - (startTime)))
         # If game is over
         if gameTime == 0:
             # Buzzer sound is played
@@ -772,6 +776,7 @@ while keep_going:
             # Wall sound is played
             pygame.mixer.Channel(1).play(pygame.mixer.Sound("wall.wav"))
 
+            # Using Python's mathematical functions the puck is programmed to bounce off the boundary in a specific way depending on how it collides with the boundary
             if (puck.angle<math.pi):
                 puck.angle = math.pi-puck.angle
             else:
@@ -812,7 +817,8 @@ while keep_going:
 
             # Wall sound is played
             pygame.mixer.Channel(1).play(pygame.mixer.Sound("wall.wav"))
-            
+
+            # Using Python's mathematical functions the puck is programmed to bounce off the boundary in a specific way depending on how it collides with the boundary
             if (puck.angle<math.pi/2):
                 puck.angle = math.pi-puck.angle
             else:
@@ -850,6 +856,7 @@ while keep_going:
         recSideTop.fill((138,54,15))
         recSideBottom.fill((138,54,15))
 
+        # Updates the location and speed of the puck
         puck.update()
 
         # Makes the background of the air hockey game surface white
@@ -921,8 +928,8 @@ while keep_going:
         # If game is in level 1, level 1 is shown on the screen during game play so that the users know which level they are playing in        
         if level1:
             screen.blit(font6.render("LEVEL 1", True, (0,191,255)), (250, 25))
-        # If game is in level 2, level 1 is shown on the screen during game play so that the users know which level they are playing in  
-        else:
+        # If game is in level 2, level 2 is shown on the screen during game play so that the users know which level they are playing in  
+        elif level2:
             screen.blit(font6.render("LEVEL 2", True, (0,139,0)), (250, 25))
 
     # Updates the full display surface to the screen

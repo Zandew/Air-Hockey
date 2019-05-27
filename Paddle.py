@@ -189,7 +189,7 @@ class Paddle(pygame.sprite.Sprite):
 
         # If the distance betweeen the puck and paddle is less than a certain amount they have collided
         if (dist<=paddleradius+puckradius-1):
-            # A distance collision sound between the puck and paddle will be played
+            # A distinctive collision sound between the puck and paddle will be played
             pygame.mixer.Channel(2).play(pygame.mixer.Sound("collision.wav"))
             return True
         else:

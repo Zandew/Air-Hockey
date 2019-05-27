@@ -24,6 +24,8 @@ from pygame.locals import *
 
 # Initiates pygame.mixer to allow multiple channels for sound effects
 pygame.mixer.init(frequency = 22050, size = -16, channels = 4, buffer = 1024)
+
+# Initiates pygame
 pygame.init()
 
 # Creates the 6 fonts used

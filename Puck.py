@@ -230,11 +230,11 @@ class Puck(pygame.sprite.Sprite):
         angle = calibrate(getAngle(puckx, pucky, paddlex, paddley))
 
         # Determines different angles between the puck and paddle used for collisions
-        # angle of tangent
+        # Angle of tangent
         reflect_angle = calibrate(angle-math.pi/2)
-        # opposite angle of tangent
+        # Opposite angle of tangent
         opp_angle = calibrate(angle+math.pi/2)
-        #angle of puck
+        # Angle of puck
         self.angle = calibrate(self.angle)
 
         # Determines the current angle of the paddle; used when the paddle collides with the puck 
@@ -248,14 +248,14 @@ class Puck(pygame.sprite.Sprite):
             num = math.sin(self.angle)*self.speed-paddle.vy
             den = math.cos(self.angle)*self.speed+paddle.vx
             self.angle = math.atan2(num, den)
-        #if puck is moving in opposite direction of the paddle
+        # If the puck is moving in the opposite direction of the paddle
         else:
-            #distance between tangent angle and puck angle
+            # Distance between tangent angle and puck angle
             d1 = minDist(self.angle, reflect_angle)
-            #distance between opposite tangent angle and puck angle
+            # Distance between opposite tangent angle and puck angle
             d2 = minDist(self.angle, opp_angle)
 
-            #sets new angle based on which tangent angle it is closer to 
+            # Sets new angle based on which tangent angle it is closer to 
             if (d1<d2):
                 if (self.angle==calibrate(reflect_angle+d1)):
                     self.angle = reflect_angle-d1
@@ -266,10 +266,12 @@ class Puck(pygame.sprite.Sprite):
                     self.angle = opp_angle-d2
                 else:
                     self.angle = opp_angle+d2
-        #adds paddle's speed to puck
+                    
+        # Adds the paddle's speed to puck
         self.speed += (paddle.vx**2+paddle.vy**2)**0.5
         self.speed = min(self.speed, 25)
-        # while paddle is still colliding with puck, move it until it is not
+        
+        # While paddle is still colliding with puck; move the puck until the paddle is not colliding with the puck
         while (paddle.collide(self)):
             x = -math.cos(angle)
             if (x>0):
